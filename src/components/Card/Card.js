@@ -17,7 +17,7 @@ const Card = ({title, location, imageUri, comments}) => {
         <Image
           style={styles.background}
           width={'100%'}
-          height={200}
+          height={350}
           source={{uri: imageUri}}
         />
       </TouchableOpacity>

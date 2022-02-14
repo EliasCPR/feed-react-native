@@ -1,9 +1,12 @@
 import React from 'react';
-import {View, FlatList} from 'react-native';
+import {FlatList, SafeAreaView, View} from 'react-native';
 import Card from './components/Card/Card';
+import {car} from './components/icons';
 import Separator from './components/Separator/Separator';
+import Story from './components/Storie/Storie';
+import styles from './stylesApp';
 
-const dataApp = [
+const FEED = [
   {
     title: 'BMW M3 1985',
     location: 'Paris, France',
@@ -17,6 +20,13 @@ const dataApp = [
     imageUri:
       'https://viagemeturismo.abril.com.br/wp-content/uploads/2016/11/thinkstockphotos-4549879531.jpeg',
     comments: 'old paris is very beautiful take me please',
+  },
+  {
+    title: 'Graduation',
+    location: 'São Paulo, Brasil',
+    imageUri:
+      'https://scontent-gru2-2.xx.fbcdn.net/v/t39.30808-6/s640x640/268839394_426269569168012_5835187952189378248_n.jpg?_nc_cat=111&ccb=1-5&_nc_sid=730e14&_nc_eui2=AeEnJR8R_jPBWaW0wcNaC1MEWHNIZ3gvb6pYc0hneC9vqg_UGzzzbWh-Kj8H78LjlNWr0ZxaLiEvtDz6go_7lWVC&_nc_ohc=sOkMV3hGqHoAX9bo4Kf&_nc_ht=scontent-gru2-2.xx&oh=00_AT_JFaKH3vhzaiw_RC5zbsZPPH8KfA2g8a1m3HwPQPpgcA&oe=620F093E',
+    comments: 'Our Elias is growing',
   },
   {
     title: 'Rafael Trestini',
@@ -48,14 +58,86 @@ const dataApp = [
   },
 ];
 
+const STORIE = [
+  {
+    id: '1',
+    name: 'Rafael Trestini',
+    imageUri:
+      'https://scontent-gru2-1.xx.fbcdn.net/v/t1.6435-9/116654345_3185026451582485_3027971154472616536_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=09cbfe&_nc_eui2=AeHvtPJCaamFiCbBFSvmxriX61HkF448i4XrUeQXjjyLhd1JabmhmNtYijAuAK68scmxoMACR3pU5GIzK0yhwoq1&_nc_ohc=fxwPawQkzFsAX_PcGQK&_nc_ht=scontent-gru2-1.xx&oh=00_AT-GGbK1kMZJlP-JpP4v7upJVFymOg_2WcFlZ9wa_gnqGw&oe=622C773A',
+  },
+
+  {
+    id: '2',
+    name: 'Melissa Melo',
+    imageUri:
+      'https://ca.slack-edge.com/T015H380FPX-U02GWTK4ACA-846e4e668885-512',
+  },
+
+  {
+    id: '3',
+    name: 'Kaylane Guarino',
+    imageUri:
+      'https://ca.slack-edge.com/T015H380FPX-U02HYRF4ZGW-dd35ed32519d-512',
+  },
+
+  {
+    id: '4',
+    name: 'Emerson Silva',
+    imageUri:
+      'https://361605-1208129-raikfcquaxqncofqfm.stackpathdns.com/wp-content/uploads/2020/11/capa-miles-morales.jpg',
+  },
+
+  {
+    id: '5',
+    name: 'Rebeca Prado',
+    imageUri:
+      'https://ca.slack-edge.com/T015H380FPX-U02V6F4HMQF-d38e783cefa4-72',
+  },
+
+  {
+    id: '6',
+    name: 'Samuel Santinelli',
+    imageUri:
+      'https://ca.slack-edge.com/T015H380FPX-U030WRK6CRE-c26cffd36d9f-72',
+  },
+
+  {
+    id: '7',
+    name: 'Israel Pablo',
+    imageUri:
+      'https://ca.slack-edge.com/T015H380FPX-U02JKCJA1HV-f5ebaf5a38a8-512',
+  },
+
+  {
+    id: '8',
+    name: 'Jonatas Santos',
+    imageUri:
+      'https://scontent-gru1-2.xx.fbcdn.net/v/t1.6435-9/37258187_617018642031924_5902755944973991936_n.jpg?_nc_cat=103&ccb=1-5&_nc_sid=174925&_nc_eui2=AeH8zhYFbX7uFBozoV22vAJvVrQZNmuxljZWtBk2a7GWNjupk__9BdOInqEY7cLotHHM1MpS_NPKtogDzpG-Xajt&_nc_ohc=LK70bt0OdxkAX-K2Lv2&_nc_ht=scontent-gru1-2.xx&oh=00_AT-W1jy5jdcsW_4AANdf_HcCNgV_K3BvnWuGpKpu-aBhNg&oe=6231F1D1',
+  },
+
+  {
+    id: '9',
+    name: 'Elias Oliveira',
+    imageUri:
+      'https://scontent-gru2-2.xx.fbcdn.net/v/t1.6435-9/212057018_497382391552343_2461662928770408784_n.jpg?_nc_cat=102&ccb=1-5&_nc_sid=09cbfe&_nc_eui2=AeHbsYoinI3_P-sWUa-x9w-56I966gU_yDfoj3rqBT_IN7V2LPNdYJVSLxU57y6isiLaEGF1Qxqm78abVa5bxz0z&_nc_ohc=vbeULOEDzDcAX_HGIXP&_nc_ht=scontent-gru2-2.xx&oh=00_AT9yhf7QQkzJTo7N3T5xmv7AAjUoEpFf6MQ8GWhJvi3OfA&oe=62313DFC',
+  },
+];
+
 const App = () => (
-  <View>
+  <SafeAreaView>
     <FlatList
-      data={dataApp}
+      style={styles.container}
+      data={STORIE}
+      renderItem={({item}) => <Story {...item} />}
+      keyExtractor={item => item.id}
+      horizontal
+    />
+    <FlatList
+      data={FEED}
       renderItem={({item}) => <Card {...item} />}
       ItemSeparatorComponent={() => <Separator />}
     />
-  </View>
+  </SafeAreaView>
 );
 
 export default App;
