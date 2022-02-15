@@ -22,7 +22,11 @@ const Card = ({title, location, imageUri, comments}) => {
         />
       </TouchableOpacity>
       <View style={styles.iconContainer}>
-        <IconButton iconChecked={heart} iconUnchecked={heart_o} />
+        <IconButton
+          iconChecked={heart}
+          iconUnchecked={heart_o}
+          onActivate={IconButton}
+        />
         <IconButton iconChecked={bookmark} iconUnchecked={bookmark_o} />
       </View>
       <Text style={styles.comments}>{comments}</Text>
