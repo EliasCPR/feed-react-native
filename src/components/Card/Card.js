@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Image, Text, ToastAndroid, TouchableOpacity, View} from 'react-native';
 import styles from './styles';
 import {bookmark, bookmark_o, heart, heart_o} from '../icons';
@@ -8,6 +8,8 @@ const Card = ({title, location, imageUri, comments}) => {
   const showToast = cardTitle => {
     ToastAndroid.show(`I touched the image ${cardTitle}`, ToastAndroid.SHORT);
   };
+
+  const [icons, setIcons] = useState({like: false, bookmark: false});
 
   return (
     <View>
@@ -23,11 +25,17 @@ const Card = ({title, location, imageUri, comments}) => {
       </TouchableOpacity>
       <View style={styles.iconContainer}>
         <IconButton
+          onChange={e => setIcons({...icons, heart: e})}
           iconChecked={heart}
           iconUnchecked={heart_o}
-          onActivate={IconButton}
         />
-        <IconButton iconChecked={bookmark} iconUnchecked={bookmark_o} />
+        <IconButton
+          onChange={e => setIcons({...icons, bookmark: e})}
+          iconChecked={bookmark}
+          iconUnchecked={bookmark_o}
+        />
+        <Text>heart : {String(icons.heart)} </Text>
+        <Text>bookmark : {String(icons.bookmark)} </Text>
       </View>
       <Text style={styles.comments}>{comments}</Text>
     </View>
