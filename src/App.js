@@ -1,5 +1,5 @@
 import React from 'react';
-import {FlatList, SafeAreaView, View} from 'react-native';
+import {FlatList, SafeAreaView} from 'react-native';
 import Card from './components/Card/Card';
 import Separator from './components/Separator/Separator';
 import Story from './components/Storie/Storie';
