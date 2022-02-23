@@ -1,7 +1,12 @@
+import {View, Text} from 'react-native';
 import React from 'react';
 
-import Feed from './components/Feed/Feed';
-
-const App = () => <Feed />;
+const App = () => {
+  return (
+    <View>
+      <Text>App</Text>
+    </View>
+  );
+};
 
 export default App;
